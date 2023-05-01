@@ -51,9 +51,39 @@ struct ContentView: View {
             }
             TextField("Enter donation", text:$donation)
                 .keyboardType(.numberPad)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            TextField("Enter title", text: $title)
+                .keyboardType(.numberPad)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            ViewTwo(title: $title)
+            ViewThree(titleNew: $title)
         }
         .padding()
     }
+}
+
+struct ViewTwo: View{
+    
+    @Binding var title: String
+    
+    var body: some View{
+        Text(title).font(.largeTitle).foregroundColor(.orange)
+    }
+}
+
+struct ViewThree: View{
+    
+    @Binding var titleNew: String
+    
+    var body: some View{
+        Button {
+            titleNew = "New title from view three"
+        } label: {
+            Text("Change text!")
+        }
+
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
